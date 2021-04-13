@@ -2,6 +2,7 @@ package com.newscrawler.crawl;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,8 +19,7 @@ public class Article {
         this.photoUrl = photoUrl;
     }
 
-    public List<Article> getArticles() {
-        HaniCrawl haniCrawl = new HaniCrawl();
-        return haniCrawl.findByArticlePopularity();
+    public List<Article> getArticles(Crawler crawler) {
+        return crawler.findByArticlePopularity();
     }
 }

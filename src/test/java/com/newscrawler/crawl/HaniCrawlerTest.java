@@ -6,12 +6,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HaniCrawlerTest {
+public class HaniCrawlerTest extends CrawlTestAbstractClass {
     @Test
     void testSearchArticle() {
-        Article article = new Article();
-        List<Article> articles = article.getArticles();
-
+        articles = article.getArticles(new HaniCrawl());
         assertTrue(articles.size() >= 10);
     }
 }

@@ -6,12 +6,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class JoongangCrawlTest {
+public class JoongangCrawlTest extends CrawlTestAbstractClass {
     @Test
     void testSearchArticle() {
-        JoongangCrawl joongangCrawl = new JoongangCrawl();
-        List<Article> articles = joongangCrawl.findByArticlePopularity();
-
+        articles = article.getArticles(new JoongangCrawl());
         assertEquals(articles.size(), 10);
     }
 }

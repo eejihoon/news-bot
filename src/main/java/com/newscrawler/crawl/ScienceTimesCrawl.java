@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScienceTimesCrawl {
+public class ScienceTimesCrawl implements Crawler {
     private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private final static String URL = "https://www.sciencetimes.co.kr/";
     private final static String ARTICLES_POPULARITY = "div.weekly_news ul.board_list.type_view_cont li";
@@ -18,6 +18,7 @@ public class ScienceTimesCrawl {
     private final static String TAG_A = "a";
     private final static String HREF = "href";
 
+    @Override
     public List<Article> findByArticlePopularity() {
         List<Article> articles = new ArrayList<>();
         try {

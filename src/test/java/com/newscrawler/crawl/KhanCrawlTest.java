@@ -6,12 +6,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class KhanCrawlTest {
+public class KhanCrawlTest extends CrawlTestAbstractClass {
     @Test
     void testSearchArticle() {
-        KhanCrawl khan = new KhanCrawl();
-        List<Article> articles = khan.findByArticlePopularity();
-
+        articles = article.getArticles(new KhanCrawl());
         assertTrue(articles.size() >= 10);
     }
 }

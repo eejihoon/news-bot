@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HaniCrawl {
+public class HaniCrawl implements Crawler {
     private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private final static String URL = "http://www.hani.co.kr";
     private final static String HTTP = "http:";
@@ -21,6 +21,7 @@ public class HaniCrawl {
     private final static String TAG_H4 = "h4.article-title";
     private final static String ARTICLES_POPULARITY = "div.list div.article-right";
 
+    @Override
     public List<Article> findByArticlePopularity() {
         List<Article> articles = new ArrayList<>();
         try {

@@ -10,11 +10,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DongaCrawl {
+public class ScienceTimesCrawl {
     private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
-    private final static String URL = "https://www.donga.com/";
-    private final static String ARTICLES_POPULARITY = "div.trend_info div.list_box.on li";
-    private final static String A_SPAN_TXT = "a span.txt";
+    private final static String URL = "https://www.sciencetimes.co.kr/";
+    private final static String ARTICLES_POPULARITY = "div.weekly_news ul.board_list.type_view_cont li";
+    private final static String STRONG_TXT = "strong.tit";
     private final static String TAG_A = "a";
     private final static String HREF = "href";
 
@@ -26,9 +26,12 @@ public class DongaCrawl {
             Elements elements = htmlDocument.select(ARTICLES_POPULARITY);
 
             for (Element element : elements) {
-                String title = element.select(A_SPAN_TXT).text();
+                String title = element.select(STRONG_TXT).text();
                 String link = element.select(TAG_A).attr(HREF);
-                articles.add(new Article(title, link, ""));
+                //https:/news/200%e... -> https://www.sciencetimes.co.kr/news/200%e.... 형태로 변경
+                String replace = link.replace("https:", "https://www.sciencetimes.co.kr");
+
+                articles.add(new Article(title, replace, ""));
             }
         } catch (IOException e) {
             e.printStackTrace();

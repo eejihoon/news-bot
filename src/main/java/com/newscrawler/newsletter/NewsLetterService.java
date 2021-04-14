@@ -1,22 +1,22 @@
 package com.newscrawler.newsletter;
 
-import com.newscrawler.crawl.Article;
-import com.newscrawler.crawl.HaniCrawl;
+import com.newscrawler.crawl.*;
 import com.newscrawler.mail.EmailMessage;
-import com.newscrawler.mail.MailSender;
+import com.newscrawler.mail.MailSend;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 @RequiredArgsConstructor
 @Service
 public class NewsLetterService {
-    private final MailSender mailSender;
+    private final MailSend mailSend;
     private final TemplateEngine templateEngine;
 
     public void createNewsArticles(String email) {
@@ -24,12 +24,25 @@ public class NewsLetterService {
         String message = templateEngine.process("mail/news", context);
         String subject = LocalDateTime.now() +" 뉴스 레터입니다.";
         EmailMessage emailMessage = new EmailMessage(email, subject, message);
-        mailSender.sendMail(emailMessage);
+        mailSend.sendMail(emailMessage);
     }
 
     private Context getContext() {
         Article article = new Article();
-        List<Article> articles = article.getArticles(new HaniCrawl());
+        List<Article> articles = new ArrayList<>();
+        List<Crawler> crawlers = Arrays.asList(
+                new HaniCrawl(),
+                new KhanCrawl(),
+                new DongaCrawl(),
+                new DongaCrawl(),
+                new JoongangCrawl(),
+                new ScienceTimesCrawl());
+
+        crawlers.forEach(crawler -> {
+            List<Article> byArticlePopularity = crawler.findByArticlePopularity(article);
+            byArticlePopularity.forEach(arti -> articles.add(arti));
+        });
+
         Context context = new Context();
         context.setVariable("articles", articles);
         context.setVariable("host", "localhost:8081");

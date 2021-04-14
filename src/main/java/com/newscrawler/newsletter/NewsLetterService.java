@@ -28,6 +28,15 @@ public class NewsLetterService {
     }
 
     private Context getContext() {
+        List<Article> articles = getArticles();
+        Context context = new Context();
+
+        context.setVariable("articles", articles);
+        context.setVariable("host", "localhost:8081");
+        return context;
+    }
+
+    private List<Article> getArticles() {
         Article article = new Article();
         List<Article> articles = new ArrayList<>();
         List<Crawler> crawlers = Arrays.asList(
@@ -43,9 +52,6 @@ public class NewsLetterService {
             byArticlePopularity.forEach(arti -> articles.add(arti));
         });
 
-        Context context = new Context();
-        context.setVariable("articles", articles);
-        context.setVariable("host", "localhost:8081");
-        return context;
+        return articles;
     }
 }

@@ -1,10 +1,11 @@
 package com.newscrawler.crawl;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
-@Getter
+@Getter @ToString
 public class Article {
     private String title;
     private String photoUrl;
@@ -19,6 +20,6 @@ public class Article {
     }
 
     public List<Article> getArticles(Crawler crawler) {
-        return crawler.findByArticlePopularity();
+        return crawler.findByArticlePopularity(this);
     }
 }

@@ -19,7 +19,7 @@ public class ScienceTimesCrawl implements Crawler {
     private final static String HREF = "href";
 
     @Override
-    public List<Article> findByArticlePopularity() {
+    public List<Article> findByArticlePopularity(Article article) {
         List<Article> articles = new ArrayList<>();
         try {
             Connection connection = Jsoup.connect(URL).userAgent(USER_AGENT);

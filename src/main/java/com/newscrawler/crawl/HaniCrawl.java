@@ -22,7 +22,7 @@ public class HaniCrawl implements Crawler {
     private final static String ARTICLES_POPULARITY = "div.list div.article-right";
 
     @Override
-    public List<Article> findByArticlePopularity() {
+    public List<Article> findByArticlePopularity(Article article) {
         List<Article> articles = new ArrayList<>();
         try {
             Connection connection = Jsoup.connect(URL).userAgent(USER_AGENT);

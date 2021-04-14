@@ -9,9 +9,7 @@
     <h1>많이 본 기사</h1>
     <div>
         <ul th:each="article : ${articles}">
-            <li><a th:href="${article.link}"><h3 th:text="${article.title}">Title</h3></a>
-            <img th:src="${article.photoUrl}">
-            </li>
+            <li><a th:href="${article.link}"><h3 th:text="${article.title}">Title</h3></a></li>
         </ul>
     </div>
 </div>

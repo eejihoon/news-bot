@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+</head>
+<body>
+<div>
+    <h1>많이 본 기사</h1>
+    <div>
+        <ul th:each="article : ${articles}">
+            <li><a th:href="${article.link}"><h3 th:text="${article.title}">Title</h3></a>
+            <img th:src="${article.photoUrl}">
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

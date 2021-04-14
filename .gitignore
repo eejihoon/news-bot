@@ -1,3 +1,6 @@
+# mail
+src/main/resources/application-mail.properties
+
 HELP.md
 .gradle
 build/

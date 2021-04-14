@@ -2,7 +2,6 @@ package com.newscrawler.crawl;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,7 +12,7 @@ public class Article {
 
     public Article(){};
 
-    public Article(String title, String link, String photoUrl) {
+    protected Article(String title, String link, String photoUrl) {
         this.title = title;
         this.link = link;
         this.photoUrl = photoUrl;

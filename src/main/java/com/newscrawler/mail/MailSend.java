@@ -10,7 +10,7 @@ import javax.mail.internet.MimeMessage;
 
 @Component
 @RequiredArgsConstructor
-public class MailSender {
+public class MailSend {
     private final JavaMailSender javaMailSender;
 
     public void sendMail(EmailMessage emailMessage) {

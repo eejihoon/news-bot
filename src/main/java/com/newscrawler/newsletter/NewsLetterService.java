@@ -39,13 +39,7 @@ public class NewsLetterService {
     private List<Article> getArticles() {
         Article article = new Article();
         List<Article> articles = new ArrayList<>();
-        List<Crawler> crawlers = Arrays.asList(
-                new HaniCrawl(),
-                new KhanCrawl(),
-                new DongaCrawl(),
-                new DongaCrawl(),
-                new JoongangCrawl(),
-                new ScienceTimesCrawl());
+        List<Crawler> crawlers = getAllCrawl();
 
         crawlers.forEach(crawler -> {
             List<Article> byArticlePopularity = crawler.findByArticlePopularity(article);
@@ -53,5 +47,15 @@ public class NewsLetterService {
         });
 
         return articles;
+    }
+
+    private List<Crawler> getAllCrawl() {
+        return Arrays.asList(
+                new HaniCrawl(),
+                new KhanCrawl(),
+                new DongaCrawl(),
+                new DongaCrawl(),
+                new JoongangCrawl(),
+                new ScienceTimesCrawl());
     }
 }

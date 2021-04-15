@@ -1,20 +1,16 @@
 package com.newscrawler.newsletter;
 
-import lombok.Getter;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RequiredArgsConstructor
+@RestController
 public class NewspaperArticleLetterController {
-    @GetMapping("/")
-    public String home() {
-        return "index";
-    }
+    private final EmailService emailService;
 
     @PostMapping("/subscribe")
-    public void subscribeNewsLetter() {
-
+    public void subscribeNewsLetter(Email email) {
+        emailService.saveEmail(email);
     }
-
 }

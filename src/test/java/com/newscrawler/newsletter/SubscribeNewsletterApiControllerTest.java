@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @SpringBootTest
-class NewspaperArticleLetterControllerTest {
+class SubscribeNewsletterApiControllerTest {
     @Autowired MockMvc mockMvc;
     @Autowired EmailService emailService;
 

@@ -17,14 +17,13 @@ class SubscribeNewsletterApiControllerTest {
     @Autowired MockMvc mockMvc;
     @Autowired EmailService emailService;
 
-    private final String URL_SUBSCRIBE = "/subscribe";
+    private final String URL_SUBSCRIBE = "/api/subscribe";
 
     @Test
     @DisplayName("구독할 이메일 등록 테스트")
     void testSubscribe() throws Exception {
         String email = "test@mail.com";
-        mockMvc.perform(post(URL_SUBSCRIBE)
-                .param("email", email))
+        mockMvc.perform(post(URL_SUBSCRIBE + "/" + email))
                 .andExpect(status().isOk());
 
         String savedEmail = emailService.getEmails().get(0).getEmail();

@@ -24,8 +24,13 @@ public class SubscribeNewsletterApiController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        log.info("email : {}", emailAddress.getEmail());
-        emailService.saveEmail(emailAddress);
+        try {
+            log.info("email : {}", emailAddress.getEmail());
+            emailService.saveEmail(emailAddress);
+        } catch (EmailAddressDuplicateException e) {
+            log.error("error: {} ", e);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -7,13 +7,13 @@ import java.util.List;
 
 @Service
 public class EmailService {
-    private List<Email> emails = new ArrayList<>();
+    private List<EmailAddress> emailAddresses = new ArrayList<>();
 
-    public void saveEmail(Email email) {
-        emails.add(email);
+    public void saveEmail(EmailAddress emailAddress) {
+        emailAddresses.add(emailAddress);
     }
 
-    public List<Email> getEmails() {
-        return emails;
+    public List<EmailAddress> getEmails() {
+        return emailAddresses;
     }
 }

@@ -3,10 +3,10 @@ package com.newscrawler.newsletter;
 import lombok.Getter;
 
 @Getter
-public class Email {
+public class EmailAddress {
     private String email;
 
-    public Email(String email) {
+    public EmailAddress(String email) {
         this.email = email;
     }
 }

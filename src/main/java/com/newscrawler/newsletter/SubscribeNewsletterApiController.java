@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class SubscribeNewsletterApiController {
     private final EmailService emailService;
 
-    @PostMapping("/api/subscribe/{email}")
-    public ResponseEntity<String> subscribeNewsLetter(@PathVariable Email email) {
-        log.info("email : {}", email.getEmail());
-        emailService.saveEmail(email);
+    @PostMapping("/api/subscribe/{emailAddress}")
+    public ResponseEntity<String> subscribeNewsLetter(@PathVariable EmailAddress emailAddress) {
+        log.info("email : {}", emailAddress.getEmail());
+        emailService.saveEmail(emailAddress);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

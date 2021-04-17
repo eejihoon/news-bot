@@ -3,7 +3,7 @@ package com.newscrawler.newsletter.web;
 import com.newscrawler.newsletter.domain.EmailAddress;
 import com.newscrawler.newsletter.exception.EmailAddressDuplicateException;
 import com.newscrawler.newsletter.service.EmailDeleteService;
-import com.newscrawler.newsletter.service.EmailService;
+import com.newscrawler.newsletter.service.EmailSaveService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @RestController
 public class SubscribeNewsletterApiController {
     public static final String URL_API_SUBSCRIBE = "/api/subscribe";
-    private final EmailService emailService;
+    private final EmailSaveService emailSaveService;
     private final EmailDeleteService emailDeleteService;
 
     @PostMapping(URL_API_SUBSCRIBE)
@@ -33,7 +33,7 @@ public class SubscribeNewsletterApiController {
 
         try {
             log.info("email : {}", emailAddress.getEmail());
-            emailService.saveEmail(emailAddress);
+            emailSaveService.saveEmail(emailAddress);
         } catch (EmailAddressDuplicateException e) {
             log.error("error: {} ", e);
             return new ResponseEntity<>(HttpStatus.CONFLICT);

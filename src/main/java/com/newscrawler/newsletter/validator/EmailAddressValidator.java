@@ -1,7 +1,7 @@
 package com.newscrawler.newsletter.validator;
 
 import com.newscrawler.newsletter.domain.EmailAddress;
-import com.newscrawler.newsletter.service.EmailService;
+import com.newscrawler.newsletter.service.EmailSaveService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
 @RequiredArgsConstructor
 @Component
 public class EmailAddressValidator implements Validator {
-    private final EmailService emailService;
+    private final EmailSaveService emailSaveService;
     @Override
     public boolean supports(Class<?> clazz) {
         //어떤 클래스를 Validation 할 것인지
@@ -26,6 +26,6 @@ public class EmailAddressValidator implements Validator {
     }
 
     private boolean isExistsEmail(EmailAddress emailAddress) {
-        return emailService.getEmails().contains(emailAddress);
+        return emailSaveService.getEmails().contains(emailAddress);
     }
 }

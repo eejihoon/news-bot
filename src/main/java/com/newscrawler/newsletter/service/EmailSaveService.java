@@ -6,13 +6,11 @@ import com.newscrawler.newsletter.repository.EmailAddressRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class EmailService {
-    private List<EmailAddress> emailAddresses = new ArrayList<>();
+public class EmailSaveService {
     private final EmailAddressRepository emailAddressRepository;
 
     public void saveEmail(EmailAddress emailAddress) throws EmailAddressDuplicateException {

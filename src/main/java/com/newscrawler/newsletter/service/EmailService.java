@@ -1,5 +1,7 @@
-package com.newscrawler.newsletter;
+package com.newscrawler.newsletter.service;
 
+import com.newscrawler.newsletter.domain.EmailAddress;
+import com.newscrawler.newsletter.exception.EmailAddressDuplicateException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

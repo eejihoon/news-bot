@@ -1,4 +1,4 @@
-package com.newscrawler.newsletter;
+package com.newscrawler.newsletter.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

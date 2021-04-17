@@ -1,6 +1,8 @@
 package com.newscrawler.newsletter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.newscrawler.newsletter.domain.EmailAddress;
+import com.newscrawler.newsletter.service.EmailService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 class SubscribeNewsletterApiControllerTest {
     @Autowired MockMvc mockMvc;
-    @Autowired EmailService emailService;
+    @Autowired
+    EmailService emailService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private final String URL_SUBSCRIBE = "/api/subscribe";

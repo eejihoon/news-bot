@@ -1,5 +1,7 @@
-package com.newscrawler.newsletter;
+package com.newscrawler.newsletter.validator;
 
+import com.newscrawler.newsletter.domain.EmailAddress;
+import com.newscrawler.newsletter.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

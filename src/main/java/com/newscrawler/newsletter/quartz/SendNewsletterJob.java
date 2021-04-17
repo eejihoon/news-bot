@@ -1,5 +1,7 @@
-package com.newscrawler.newsletter;
+package com.newscrawler.newsletter.quartz;
 
+import com.newscrawler.newsletter.service.NewsLetterService;
+import com.newscrawler.newsletter.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

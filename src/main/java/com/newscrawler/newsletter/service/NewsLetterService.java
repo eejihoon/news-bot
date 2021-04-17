@@ -1,4 +1,4 @@
-package com.newscrawler.newsletter;
+package com.newscrawler.newsletter.service;
 
 import com.newscrawler.crawl.*;
 import com.newscrawler.mail.EmailMessage;

@@ -1,4 +1,4 @@
-package com.newscrawler.newsletter;
+package com.newscrawler.newsletter.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

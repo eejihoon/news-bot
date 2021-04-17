@@ -1,5 +1,8 @@
-package com.newscrawler.newsletter;
+package com.newscrawler.newsletter.web;
 
+import com.newscrawler.newsletter.domain.EmailAddress;
+import com.newscrawler.newsletter.exception.EmailAddressDuplicateException;
+import com.newscrawler.newsletter.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

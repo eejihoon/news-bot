@@ -1,6 +1,7 @@
 package com.newscrawler.newsletter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.newscrawler.newsletter.domain.EmailAddress;
 import com.newscrawler.newsletter.service.EmailService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,8 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 class SubscribeNewsletterApiControllerTest {
     @Autowired MockMvc mockMvc;
-    @Autowired
-    EmailService emailService;
+    @Autowired EmailService emailService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private final String URL_SUBSCRIBE = "/api/subscribe";
@@ -76,5 +76,22 @@ class SubscribeNewsletterApiControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(email)))
                 .andExpect(status().isConflict());
+    }
+
+
+    @Test
+    @DisplayName("구독 취소 테스트")
+    void testCancelSubscribe() throws Exception {
+        String email = "tester222@news.com";
+        emailService.saveEmail(new EmailAddress(email));
+
+        assertTrue(emailService.getEmails().contains(new EmailAddress(email)));
+
+        mockMvc.perform(delete(URL_SUBSCRIBE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(email)))
+                .andExpect(status().isOk());
+
+        assertFalse(emailService.getEmails().contains(new EmailAddress(email)));
     }
 }

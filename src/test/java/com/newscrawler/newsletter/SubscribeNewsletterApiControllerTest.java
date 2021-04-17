@@ -1,7 +1,8 @@
 package com.newscrawler.newsletter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.newscrawler.newsletter.service.EmailService;
+import com.newscrawler.newsletter.domain.EmailAddress;
+import com.newscrawler.newsletter.service.EmailSaveService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class SubscribeNewsletterApiControllerTest {
     @Autowired MockMvc mockMvc;
     @Autowired
-    EmailService emailService;
+    EmailSaveService emailSaveService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private final String URL_SUBSCRIBE = "/api/subscribe";
@@ -35,7 +36,7 @@ class SubscribeNewsletterApiControllerTest {
                 .content(objectMapper.writeValueAsString(email)))
                 .andExpect(status().isOk());
 
-        String savedEmail = emailService.getEmails().get(0).getEmail();
+        String savedEmail = emailSaveService.getEmails().get(0).getEmail();
         assertEquals(savedEmail, email);
     }
 
@@ -69,12 +70,29 @@ class SubscribeNewsletterApiControllerTest {
                 .content(objectMapper.writeValueAsString(email)))
                 .andExpect(status().isOk());
 
-        String savedEmail = emailService.getEmails().get(0).getEmail();
+        String savedEmail = emailSaveService.getEmails().get(0).getEmail();
         assertEquals(savedEmail, email);
 
         mockMvc.perform(post(URL_SUBSCRIBE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(email)))
                 .andExpect(status().isConflict());
+    }
+
+
+    @Test
+    @DisplayName("구독 취소 테스트")
+    void testCancelSubscribe() throws Exception {
+        String email = "tester222@news.com";
+        emailSaveService.saveEmail(new EmailAddress(email));
+
+        assertTrue(emailSaveService.getEmails().contains(new EmailAddress(email)));
+
+        mockMvc.perform(delete(URL_SUBSCRIBE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(email)))
+                .andExpect(status().isOk());
+
+        assertFalse(emailSaveService.getEmails().contains(new EmailAddress(email)));
     }
 }

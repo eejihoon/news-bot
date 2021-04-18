@@ -1,0 +1,44 @@
+.news-content {
+    display: flex;
+}
+.thumbnail {
+    margin: 1rem;
+}
+
+.thumbnail img {
+    display: block;
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.contents p {
+    line-height: 1.5;
+    margin-top: 0.5rem;
+    white-space: normal;
+}
+
+.contents h2 {
+    margin: 0;
+}
+
+.contents h2 a {
+    color: black;
+}
+
+.item {
+    box-sizing: border-box;
+    padding-bottom: 3rem;
+    width: 768px;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .item{
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
